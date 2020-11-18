@@ -1,53 +1,45 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-function Food({name, picture, rating }){
-  
-  return ( <div><h2>I like { name }</h2>
-  <h4>{rating}/5.0</h4>
-    <img src={picture} alt={ name }/></div>
-    );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    console.log('hello');
+  }
+  componentDidMount() {
+    console.log('componet rendered');
+  }
+  componentDidUpdate(){
+  console.log('I just updated');
 }
+componentWillUnmount(){
+  console.log('Goodbye, cruel world');
+}
+  state = {
+    count: 0,
+  };
+  add = () => {
+    this.setState(current => ({
+      count: current.count + 1
+    }))
+  };
+  minus = () => {
+    this.setState(current => ({
+      count: current.count - 1
+    }))
+  }
+;
 
-const foodILike = [
-  {
-    id:1,
-    name: 'Kimchi',
-    image: 'https://m.jnmall.kr/web/product/big/201904/609ee5a2a4bea63000745b65a63f064a.png',
-    rating: 5,
-
-  },
-  {
-    id:2,
-    name: 'Samgyeopsal',
-    image: 'https://pds.joins.com/news/component/htmlphoto_mmdata/201702/27/117f5b49-1d09-4550-8ab7-87c0d82614de.jpg',
-    rating: 4.9
-  },
-  {
-    id:3,
-    name: 'Bibimbap',
-    image: 'https://recipe1.ezmember.co.kr/cache/recipe/2018/10/03/355b5cd5c3beb1a775c82ee425dcd1931.jpg',
-    rating: 2.1
+  render(){
+    console.log("I'm rendering ");
+  return (
+  <div>
+  <h1>The number is: {this.state.count}</h1>
+  <button onClick={this.add}>Add</button>
+  <button onClick={this.minus}>Minus</button>
+  </div>
+    );
   }
 
-];
-
-function App() {
-  return (
-    <div>
-      {foodILike.map(dish => (<Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating}/>))}
-      
-
-      
-
-      </div>
-    );
 }
-Food.propTypes = {
-  name: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired
-};
-
 
 export default App;
