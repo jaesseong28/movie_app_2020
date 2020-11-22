@@ -1,45 +1,21 @@
 import React from 'react';
+import About from'./routes/About';
+import Home from './routes/Home';
 
-class App extends React.Component {
-  constructor(props){
-    super(props);
-    console.log('hello');
-  }
-  componentDidMount() {
-    console.log('componet rendered');
-  }
-  componentDidUpdate(){
-  console.log('I just updated');
-}
-componentWillUnmount(){
-  console.log('Goodbye, cruel world');
-}
-  state = {
-    count: 0,
-  };
-  add = () => {
-    this.setState(current => ({
-      count: current.count + 1
-    }))
-  };
-  minus = () => {
-    this.setState(current => ({
-      count: current.count - 1
-    }))
-  }
-;
+import {HashRouter, Route} from 'react-router-dom';
+import './app.css';
+import Navigation from './components/Navigation';
+import Detail from './routes/Detail';
 
-  render(){
-    console.log("I'm rendering ");
-  return (
-  <div>
-  <h1>The number is: {this.state.count}</h1>
-  <button onClick={this.add}>Add</button>
-  <button onClick={this.minus}>Minus</button>
-  </div>
-    );
-  }
 
+function App(){
+  return (<HashRouter>
+    <Navigation />
+    <Route path="/" exact={true} component={Home} />
+    <Route path=
+    "/about" component={About} />
+    <Route path="/movie-detail" component={Detail}></Route>
+  </HashRouter>)
 }
 
 export default App;
